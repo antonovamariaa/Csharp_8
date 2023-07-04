@@ -44,16 +44,6 @@ int[,] Multiply(int[,] matrix1, int[,] matrix2)
 
     int[,] result = new int[length, length];
 
-    /*for (int m = 0; m < result.GetLength(0); m++){
-        for (int n = 0; n < result.GetLength(1); n++){
-            for (int i = 0; i < matrix1.GetLength(0); i++){
-                for (int j = 0; j < matrix1.GetLength(1); j++)
-                {
-                    result[m,n] = result[m,n] + (matrix1[i,j]*matrix2[j,i]);}
-            }
-        }
-    }
-    */
     for (int i = 0; i < result.GetLength(0); i++)
     {
         for (int j = 0; j < result.GetLength(0); j++)
