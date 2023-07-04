@@ -44,8 +44,6 @@ int MinRowNumber(int[,] matrix)
         counter++;
     }
 
-    System.Console.WriteLine(string.Join(" ", sum));
-
     int min = sum[0];
     for (int i = 0; i < sum.Length; i++)
     {
@@ -70,4 +68,4 @@ int maxnum = Input("input maximum number: ");
 int[,] matrix = Fillmatrix(rows, columns, minnum, maxnum);
 Printmatrix(matrix);
 System.Console.WriteLine();
-System.Console.WriteLine(MinRowNumber(matrix));
+System.Console.WriteLine("row " + MinRowNumber(matrix));
