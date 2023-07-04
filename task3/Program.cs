@@ -50,7 +50,8 @@ int[,] Multiply(int[,] matrix1, int[,] matrix2)
         {
             for (int k = 0; k < matrix1.GetLength(1); k++)
             {
-                result[i, j] = result[i, j] + (matrix1[i, k] * matrix2[k, j]);
+                if (length == matrix1.GetLength(1)) {result[i, j] = result[i, j] + (matrix1[i, k] * matrix2[k, j]);}
+                else if (length == matrix1.GetLength(0)) {result[i, j] = result[i, j] + (matrix1[j, k] * matrix2[k, i]);}
             }
         }
     }
