@@ -1,24 +1,33 @@
-﻿int[,,] Fillmatrix(int x, int y, int z, int min, int max)
-{
+﻿
+int[] Fillarray (string message) {
     int[] array = new int [90];
     for (int i = 0; i<array.Length; i++){
         array[i] = i+10;
     }
-
-    int[,,] matrix = new int[x, y, z];
-    int temp = 0;
     Random rand = new Random();
+    for (int i = array.Length -1; i>=1; i--){
+        int j = rand.Next(0, i+1);
+        int temp = array[j];
+        array[j] = array[i];
+        array[i] = temp;
+    }
+
+    return array;
+}
+
+int[,,] Fillmatrix(int x, int y, int z, int[] numbers)
+{
+    int[,,] matrix = new int[x, y, z];
+    Random rand = new Random();
+    int counter = 0;
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             for (int f = 0; f < matrix.GetLength(2); f++)
-            {
-                temp = rand.Next(0, array.Length);
-                matrix[i, j, f] = array[temp];
-                array = array.Except(new int[] { temp }).ToArray();
-
-                //matrix[i, j, f] = rand.Next(min, max + 1);//не придумала, как поменять генерацию на неповторяющуюся
+            {   
+                matrix[i, j, f] = numbers[counter];
+                counter++;
             }
         }
     }
@@ -48,10 +57,12 @@ int Input(string text)
 }
 
 
+
 //----------------------------------------------------------------------
 
-int x = Input("input x: "); // columns
-int y = Input("input y: "); // rows
+
+int x = Input("input x: "); 
+int y = Input("input y: "); 
 int z = Input("input z: ");
 
 
@@ -62,12 +73,10 @@ if (x * y * z > 99)
 }
 else
 {
-    int minnum = Input("input minimal number: ");
-    int maxnum = Input("input maximum number: ");
-    int[,,] matrix = Fillmatrix(x, y, z, minnum, maxnum);
+    int [] numList = Fillarray("generate random number");
+    int[,,] matrix = Fillmatrix(x, y, z, numList);
     Printmatrix(matrix);
     System.Console.WriteLine();
 }
-
 
 
