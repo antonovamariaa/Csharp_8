@@ -32,15 +32,7 @@ int Input(string text)
 
 int[,] Multiply(int[,] matrix1, int[,] matrix2)
 {
-    int length = 0;
-    if (matrix1.GetLength(1) < matrix1.GetLength(0))
-    {
-        length = matrix1.GetLength(1);
-    }
-    else
-    {
-        length = matrix1.GetLength(0);
-    }
+    int length = matrix1.GetLength(0);
 
     int[,] result = new int[length, length];
 
