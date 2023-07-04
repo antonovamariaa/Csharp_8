@@ -42,8 +42,14 @@ int[,] Multiply(int[,] matrix1, int[,] matrix2)
         {
             for (int k = 0; k < matrix1.GetLength(1); k++)
             {
-                if (length == matrix1.GetLength(1)) { result[i, j] = result[i, j] + (matrix1[i, k] * matrix2[k, j]); }
-                else if (length == matrix1.GetLength(0)) { result[i, j] = result[i, j] + (matrix1[j, k] * matrix2[k, i]); }
+                if (length == matrix1.GetLength(1))
+                {
+                    result[j, i] = result[j, i] + (matrix1[i, k] * matrix2[k, j]);
+                }
+                else /*if (length == matrix1.GetLength(0))*/
+                {
+                    result[j, i] = result[j, i] + (matrix1[j, k] * matrix2[k, i]);
+                }
             }
         }
     }
@@ -58,14 +64,26 @@ int columns = Input("input columns: ");
 int rows = Input("input rows: ");
 int minnum = Input("input minimal number: ");
 int maxnum = Input("input maximum number: ");
-System.Console.WriteLine();
-int[,] matrix1 = Fillmatrix(rows, columns, minnum, maxnum);
-System.Console.WriteLine("matrix 1: ");
-Printmatrix(matrix1);
-System.Console.WriteLine();
-int[,] matrix2 = Fillmatrix(columns, rows, minnum, maxnum);
-System.Console.WriteLine("matrix 2: ");
-Printmatrix(matrix2);
-System.Console.WriteLine();
-System.Console.WriteLine("result: ");
-Printmatrix(Multiply(matrix1, matrix2));
+
+if (minnum >= maxnum)
+{
+    System.Console.WriteLine("error. minnum >= maxnum. try again.");
+}
+else
+{
+    int[,] matrix1 = Fillmatrix(rows, columns, minnum, maxnum);
+    int[,] matrix2 = Fillmatrix(columns, rows, minnum, maxnum);
+    int[,] result = Multiply(matrix1, matrix2);
+
+    System.Console.WriteLine();
+    System.Console.WriteLine("matrix 1: ");
+    Printmatrix(matrix1);
+    System.Console.WriteLine();
+    System.Console.WriteLine("matrix 2: ");
+    Printmatrix(matrix2);
+    System.Console.WriteLine();
+    System.Console.WriteLine("result: ");
+    Printmatrix(result);
+}
+
+
