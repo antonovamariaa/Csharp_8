@@ -1,12 +1,15 @@
 ﻿
-int[] Fillarray (string message) {
-    int[] array = new int [90];
-    for (int i = 0; i<array.Length; i++){
-        array[i] = i+10;
+int[] Fillarray(string message)
+{
+    int[] array = new int[90];
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] = i + 10;
     }
     Random rand = new Random();
-    for (int i = array.Length -1; i>=1; i--){
-        int j = rand.Next(0, i+1);
+    for (int i = array.Length - 1; i >= 1; i--)
+    {
+        int j = rand.Next(0, i + 1);
         int temp = array[j];
         array[j] = array[i];
         array[i] = temp;
@@ -25,7 +28,7 @@ int[,,] Fillmatrix(int x, int y, int z, int[] numbers)
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             for (int f = 0; f < matrix.GetLength(2); f++)
-            {   
+            {
                 matrix[i, j, f] = numbers[counter];
                 counter++;
             }
@@ -61,8 +64,8 @@ int Input(string text)
 //----------------------------------------------------------------------
 
 
-int x = Input("input x: "); 
-int y = Input("input y: "); 
+int x = Input("input x: ");
+int y = Input("input y: ");
 int z = Input("input z: ");
 
 
@@ -73,7 +76,7 @@ if (x * y * z > 99)
 }
 else
 {
-    int [] numList = Fillarray("generate random number");
+    int[] numList = Fillarray("generate random number");
     int[,,] matrix = Fillmatrix(x, y, z, numList);
     Printmatrix(matrix);
     System.Console.WriteLine();
