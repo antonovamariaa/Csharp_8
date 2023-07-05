@@ -39,7 +39,7 @@ int[,] Sorted(int[,] matrix)
     {
         for (int j = 0; j < matrix.GetLength(1) - 1; j++)
         {
-            if (matrix[i, j] > matrix[i, j + 1])
+            if (matrix[i, j] < matrix[i, j + 1])
             {
                 int temp = matrix[i, j];
                 matrix[i, j] = matrix[i, j + 1];
