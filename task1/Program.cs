@@ -31,8 +31,6 @@ int Input(string text)
     return Convert.ToInt32(System.Console.ReadLine());
 }
 
-
-
 int[,] Sorted(int[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
