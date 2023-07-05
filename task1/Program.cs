@@ -33,18 +33,21 @@ int Input(string text)
 
 int[,] Sorted(int[,] matrix)
 {
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    int temp = 0;
+    for (int m = 0; m < matrix.GetLength(0); m++)
     {
-        for (int j = 0; j < matrix.GetLength(1) - 1; j++)
+        for (int i = 0; i < matrix.GetLength(1) - 1; i++)
         {
-            if (matrix[i, j] < matrix[i, j + 1])
+            for (int j = i + 1; j < matrix.GetLength(1); j++)
             {
-                int temp = matrix[i, j];
-                matrix[i, j] = matrix[i, j + 1];
-                matrix[i, j + 1] = temp;
+                if (matrix[m, i] < matrix[m, j])
+                {
+                    temp = matrix[m, i];
+                    matrix[m, i] = matrix[m, j];
+                    matrix[m, j] = temp;
+                }
             }
         }
-
     }
     return matrix;
 }
@@ -61,8 +64,5 @@ System.Console.WriteLine();
 System.Console.WriteLine("sorted matrix: ");
 System.Console.WriteLine();
 Printmatrix(Sorted(matrix));
-
-
-
 
 
