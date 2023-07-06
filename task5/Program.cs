@@ -2,7 +2,7 @@
 int[,] Fillmatrix(int row, int col, int startNum)
 {
     int[,] matrix = new int[row, col];
-    int x = 1;
+    int x = 0;
     int y = 1;
     int m = matrix.GetLength(1);
     int n = matrix.GetLength(0);
@@ -13,17 +13,15 @@ int[,] Fillmatrix(int row, int col, int startNum)
 
     while (m + n > 2)
     {
-        for (int i = 1; i < m + n - 1; i++)
+        for (int i = 1; i <= m + n - 1; i++)
         {
-            System.Console.Write("m=" + m + " n=" + n + "   dx=" + dx + " dy=" + dy + "   x=" + x + " y=" + y + " num=" + num + " i=" + i + "c=" + counter);
+            System.Console.Write("m=" + m + " n=" + n + "   dx=" + dx + " dy=" + dy + "   x=" + x + " y=" + y + " num=" + num + " i=" + i + " c=" + counter);
+
+            if (i < n+1) { x = x + dx; } else { y = y + dy; }
+            
             matrix[x - 1, y - 1] = num;
             num++;
-
-        
-                if (i < n) { x = x + dx; }
-                else { y = y + dy; }
-            
-
+                        
             System.Console.WriteLine("   x=" + x + " y=" + y + " num=" + num );
 
         }
