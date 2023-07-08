@@ -69,7 +69,6 @@ int y = Input("input y: ");
 int z = Input("input z: ");
 
 
-
 if (x * y * z > 99)
 {
     System.Console.WriteLine("error. more indexes than unrepetitive numbers. try again");
