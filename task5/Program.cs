@@ -1,48 +1,53 @@
-﻿
-int[,] Fillmatrix(int row, int col, int startNum)
+﻿int[,] Fillmatrix(int size)
 {
-    int[,] matrix = new int[row, col];
-    int x = 0;
-    int y = 1;
-    int m = matrix.GetLength(1);
-    int n = matrix.GetLength(0);
-    int dx = 1;
-    int dy = 1;
-    int counter = 0;
-    int num = startNum;
+    int[,] matrix = new int[size, size]; // массив пока квадратный  
+    int wx = size; //размеры массива
+    int wy = size;
 
-    while (m + n > 2)
+    int x = 0; // текущие координаты
+    int y = 0;
+
+    int xstart = 0;     //левый отступ текущего прямоугольника от исходного
+    int xend = 0;       //правый отступ
+    int ystart = 0;     //верхний отступ
+    int yend = 0;       //нижний отступ
+
+    int num = 1;        //значение для заполнения (можно легко менять, поэтому отдельно)
+    int counter = 1;    //счетчик заполненных ячеек(для выхода при достижении х*у)
+
+
+    while (counter <= wx * wy)
     {
-        for (int i = 1; i <= m + n - 1; i++)
+        matrix[x, y] = num;
+
+        if (y == ystart && x < wx - xend - 1) { x++; }      // идем вправо
+        else if (y == wy - yend - 1 && x > xstart) { x--; } //идем влево
+        else if (x == xstart && y > ystart) { y--; }        //идем вверх
+        else { y++; }                                       //идем вниз
+        // else if (ix == wx - xend -1 && iy < wy - yend -1) //условие похода вниз - для понимания
+
+        // условия перехода на внутренний круг: позиция [xstart, ystart + 1]
+        // возможно для прямоугольника(не квадрата) сломается
+        if (y == ystart + 1 && x == xstart)
         {
-            System.Console.Write("m=" + m + " n=" + n + "   dx=" + dx + " dy=" + dy + "   x=" + x + " y=" + y + " num=" + num + " i=" + i + " c=" + counter);
-
-            if (i < n+1) { x = x + dx; } else { y = y + dy; }
-            
-            matrix[x - 1, y - 1] = num;
-            num++;
-                        
-            System.Console.WriteLine("   x=" + x + " y=" + y + " num=" + num );
-
+            xstart++;
+            xend++;
+            ystart++;
+            yend++;
         }
-        if (m > 1) { m--; }
-        if (n > 1) { n--; }
-        dx = -dx;
-        dy = -dy;
-        if (dx == 1) { counter++; }
-        //System.Console.WriteLine(" ");
+        num++;
+        counter++;
     }
-
     return matrix;
 }
 
 void Printmatrix(int[,] matrix)
 {
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    for (int y = 0; y < matrix.GetLength(1); y++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        for (int x = 0; x < matrix.GetLength(0); x++)
         {
-            System.Console.Write(matrix[j, i] + "\t");
+            System.Console.Write(matrix[x, y] + "\t");
         }
         System.Console.WriteLine();
     }
@@ -54,14 +59,10 @@ int Input(string text)
     return Convert.ToInt32(System.Console.ReadLine());
 }
 
-
-
 //----------------------------------------------------------------------
 
-int columns = Input("input columns: ");
-int rows = Input("input rows: ");
-int startNum = Input("input start number: ");
-int[,] matrix = Fillmatrix(rows, columns, startNum);
+int size = Input("input size: ");
+int[,] matrix = Fillmatrix(size);
 Printmatrix(matrix);
 
 
